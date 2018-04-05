@@ -1,194 +1,97 @@
 <?php
-
 while (list($key, $value) = each($arr)) {
-
     if (!($key % 2)) { // skip even members
-
         continue;
-
     }
-
     do_something_odd($value);
-
 }
-
-
 
 $i = 0;
-
 while ($i++ < 5) {
-
-    echo "outer<br />\n";
-
+    echo "Outer<br />\n";
     while (1) {
-
-        echo "middle<br />\n";
-
+        echo "Middle<br />\n";
         while (1) {
-
-            echo "inner<br />\n";
-
+            echo "Inner<br />\n";
             continue 3;
-
         }
-
-        echo "this never gets output.<br />\n";
-
+        echo "This never gets output.<br />\n";
     }
-
-    echo "neither does this.<br />\n";
-
+    echo "Neither does this.<br />\n";
 }
-
-
-
-
 
 
 
 ^^
-
 for( $i = 0; $i < 3; ++ $i )
-
     {
-
         echo ' [', $i, '] ';
-
         switch( $i )
-
         {
-
             case 0: echo 'zero'; break;
-
-            case 1: echo 'one' ; xxxx;
-
+            case 1: echo 'one' ; XXXX;
             case 2: echo 'two' ; break;
-
         }
-
         echo ' <' , $i, '> ';
-
     }
 
 
-
-
-
 function foo(&$bar) 
-
 {
-
     unset($bar);
-
     $bar = "blah";
-
 }
 
-
-
 $bar = 'algo';
-
 echo "$bar\n";
-
-
 
 foo($bar);
-
 echo "$bar\n";
-
-
-
-
 
 
 
 @
 
-
-
 function foo()
-
 {
-
     static $bar;
-
     $bar++;
-
-    echo "antes de unset: $bar, ";
-
+    echo "Antes de unset: $bar, ";
     unset($bar);
-
     $bar = 23;
-
-    echo "despuï¿½s de unset: $bar\n";
-
+    echo "Después de unset: $bar\n";
 }
 
-
-
 foo();
-
 foo();
-
 foo();
-
-
 
 $stack = array('first', 'second', 'third', 'fourth', 'fifth'); 
 
-
-
-foreach($stack as $v){ 
-
+foreach($stack AS $v){ 
     if($v == 'second')continue; 
-
     if($v == 'fourth')break; 
-
     echo $v.'<br>'; 
-
 } 
-
 /* 
-
-
 
 first 
-
 third 
 
-
-
 */ 
-
-
 
 $stack2 = array('one'=>'first', 'two'=>'second', 'three'=>'third', 'four'=>'fourth', 'five'=>'fifth'); 
-
-foreach($stack2 as $k=>$v){ 
-
+foreach($stack2 AS $k=>$v){ 
     if($v == 'second')continue; 
-
     if($k == 'three')continue; 
-
     if($v == 'fifth')break; 
-
     echo $k.' ::: '.$v.'<br>'; 
-
 } 
-
 /* 
-
 &
-
 one ::: first 
-
 four ::: fourth 
 
-
-
 */ 
-
 $recordset['nombre del campo']
-
 ?>
-

@@ -10,11 +10,12 @@
  */
 
 package analizador;
-
+import javax.swing.JOptionPane;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
@@ -151,14 +152,37 @@ public class interfaz extends javax.swing.JFrame {
                 new interfaz().setVisible(true);
             }
         });
+    
     }
     public void probarLexerFile() throws IOException{
-      
+        
+        int cont=0;
+        int cont1=1;
+        String cadena;
+        //boolean verificar=false;
+        //boolean verificar1=false;
         File fichero = new File ("fichero.txt");
+        
         PrintWriter writer;
+        
         try {
+            
             writer = new PrintWriter(fichero);
-            writer.print(jTextField1.getText().toLowerCase());
+            
+            fichero=new File(jTextField1.getText()+".txt");
+            String linea;
+            if (fichero.exists()) {
+                FileReader archivo =new FileReader(fichero);
+                BufferedReader leer =new BufferedReader(archivo);
+                linea=leer.readLine();
+                
+                while(linea!=null){
+                    writer.println(linea.toLowerCase() + "\n");
+                    linea=leer.readLine();
+      
+                }
+            }
+            
             writer.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(interfaz.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,26 +190,309 @@ public class interfaz extends javax.swing.JFrame {
         Reader reader = new BufferedReader(new FileReader("fichero.txt"));
         Lexer lexer = new Lexer (reader);
         String resultado="";
+        String resultado1="";
+        String errores="";
+        
+        PrintWriter writer1;
+        PrintWriter writer2;
+        File salida = new File (jTextField1.getText()+".out.txt");
+        File salida2 = new File ("ERRORES.txt");
+        writer1 = new PrintWriter(salida);
+        writer2 = new PrintWriter(salida2);
+        
         while(true){
             Token token = lexer.yylex();
             if (token ==null){
                 resultado=resultado+"EOF";
                 jTextArea1.setText(resultado);
+               
+                    if(cont==0)//&& verificar==true && verificar1==true
+                    {
+                        
+                        //se imprime el archivo
+                        //indica que el archivo es correcto
+                        JOptionPane.showMessageDialog(null, "¡El archivo es correto, pertenece a php!");
+
+                        writer1.close();
+                        writer2.close();
+                        salida2.delete();
+                    }
+                    else
+                    {
+                        
+                        //no se imprime el archivo
+                        //imprime archivo con errores y el numero de linea que se encuentra
+                         //error no existe inicio fin del programa
+                        JOptionPane.showMessageDialog(null, "¡El archivo es incorrecto, no pertenece a php!");
+                        writer1.close();
+                        writer2.close();
+                        salida.delete();
+                    }
+                
+             
+                
                 return;
             }
             
             switch(token) {
                 
                 case ERROR:
-                    resultado=resultado+ "Error, simbolo desconocido \n";
+                    resultado=resultado+ "Error, el token no pertenece a php " + lexer.lexeme + "\n";
+                    errores="Error, el token no pertenece a php " + lexer.lexeme + "\n";
+                    cont++;
+                    writer2.println(errores);
                     break;
-                case ID: case INT:
+                
+//                case ID: case INT:
+//                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+//                    break;
+               
+                    
+                case PUNTO_Y_COMA:
                     resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
                     break;
+                    
+                case INTERROGACION:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case DOLAR:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case PUNTO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case COMA:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case DOSPUNTOS:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case PARENTESIS_IZQUIERDO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case PARENTESIS_DERECHO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case LLAVE_IZQUIERDA:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                
+                
+                case LLAVE_DERECHA:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case CORCHETE_IZQUIERDO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case CORCHETE_DERECHO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case AMPERSAND:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERADOR_ARITMETICO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERADOR_ASIGNACION:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERCOMBINADO_ARITMETICO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERCOMBINADO_CAD:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERADOR_COMPARACION:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERADOR_INCREMENTO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERADOR_LOGICO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERLOGNOT:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case OPERASIG_ARRAY:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case PALABRARESERVADA:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case CADENA:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme.toString());
+                    //verificar=true;
+                    break;
+                    
+                case ENTERO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case REAL:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case BOOLEANO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme.toUpperCase());
+                    //verificar=true;
+                    break;
+                    
+                case IDENTIFICADOR:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case VARIABLEPREDEFINIDA:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme.toUpperCase());
+                    //verificar=true;
+                    break;
+                    
+                case VARIABLEPREDEFINIDA1:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case VARIABLE:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case CODIGO_SQL:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                
+                case CODIGO_HTML:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case MYSQLQUERY:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case CONSTANTE:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                    
+                case WHITE:
+                    resultado1= resultado1 + token+ " " + lexer.lexeme;
+                    writer1.print(lexer.lexeme);
+                    break;
+                    
+                case CAMPOS_DE_ACCESO:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    String[] campos=lexer.lexeme.split("\\[");
+                    writer1.print(campos[0]);
+                    writer1.print("[");
+                    writer1.print(campos[1].toUpperCase());
+ 
+                    break;
+                    
+                case FIN:
+                    resultado=resultado+ "TOKEN: " + token  + " " + lexer.lexeme + "\n";
+                    //verificar1=true;
+                    writer1.print(lexer.lexeme);
+                    break;
+                    
+                case INICIO:
+                    resultado=resultado+ "TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    //verificar1=true;
+                    writer1.print(lexer.lexeme);
+                    break;
+                    
                 default:
-                    resultado=resultado+ "TOKEN: " + token + "\n";
+                    resultado=resultado+ "TOKEN: " + token   + "\n";
+                    writer1.print(token.toString().toLowerCase());
             }
+            
         }
+        
         
  }
     
