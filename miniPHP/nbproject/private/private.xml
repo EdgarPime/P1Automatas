@@ -6,17 +6,18 @@
             <url>src/analizador/Lexer.flex</url>
             <bookmark id="1">
                 <name/>
-                <line>256</line>
+                <line>260</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP2/src/analizador/Lexer.flex</file>
-            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP2/src/analizador/Lexer.java</file>
-            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP2/src/analizador/Token.java</file>
-            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP2/src/analizador/interfaz.java</file>
+            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP/src/analizador/interfaz.java</file>
+            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP/src/analizador/Lexer.flex</file>
+            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP/src/analizador/Main.java</file>
+            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP/src/analizador/Token.java</file>
+            <file>file:/C:/Users/Pimentel/Desktop/proyecto%20automatas/3ra%20version/miniPHP/src/analizador/Lexer.java</file>
         </group>
     </open-files>
 </project-private>

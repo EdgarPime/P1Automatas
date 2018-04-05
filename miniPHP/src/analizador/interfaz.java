@@ -139,6 +139,7 @@ public class interfaz extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jTextField1.setText("");
+        jTextArea1.setText("");
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -157,7 +158,7 @@ public class interfaz extends javax.swing.JFrame {
     public void probarLexerFile() throws IOException{
         
         int cont=0;
-        int cont1=1;
+        int cont1=2;
         String cadena;
         //boolean verificar=false;
         //boolean verificar1=false;
@@ -187,6 +188,8 @@ public class interfaz extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        if (fichero.exists() && jTextField1!=null) {
         Reader reader = new BufferedReader(new FileReader("fichero.txt"));
         Lexer lexer = new Lexer (reader);
         String resultado="";
@@ -224,6 +227,7 @@ public class interfaz extends javax.swing.JFrame {
                         //imprime archivo con errores y el numero de linea que se encuentra
                          //error no existe inicio fin del programa
                         JOptionPane.showMessageDialog(null, "¡El archivo es incorrecto, no pertenece a php!");
+                        writer2.println("SE ENCONTRARON "+cont+" ERRORES EN EL ARCHIVO");
                         writer1.close();
                         writer2.close();
                         salida.delete();
@@ -238,9 +242,9 @@ public class interfaz extends javax.swing.JFrame {
                 
                 case ERROR:
                     resultado=resultado+ "Error, el token no pertenece a php " + lexer.lexeme + "\n";
-                    errores="Error, el token no pertenece a php " + lexer.lexeme + "\n";
+                    errores="El token no pertenece a php " + lexer.lexeme + "\n";
                     cont++;
-                    writer2.println(errores);
+                    writer2.println(errores + " Error en la linea " + cont1/2);
                     break;
                 
 //                case ID: case INT:
@@ -419,7 +423,11 @@ public class interfaz extends javax.swing.JFrame {
                     
                 case VARIABLEPREDEFINIDA:
                     resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
-                    writer1.print(lexer.lexeme.toUpperCase());
+                    //writer1.print(lexer.lexeme.toUpperCase());
+                    String[] campos1=lexer.lexeme.split("\\[");
+                    writer1.print(campos1[0].toUpperCase());
+                    writer1.print("[");
+                    writer1.print(campos1[1]);
                     //verificar=true;
                     break;
                     
@@ -459,10 +467,45 @@ public class interfaz extends javax.swing.JFrame {
                     //verificar=true;
                     break;
                     
+                case LLAMADAFUNCION:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case SENTENCIA_IF:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case SENTENCIA_WHILE:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case SENTENCIA_SWITCH:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;    
+                
+                case SENTENCIA_ELSEIF:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;  
                     
                 case WHITE:
                     resultado1= resultado1 + token+ " " + lexer.lexeme;
                     writer1.print(lexer.lexeme);
+                    break;
+                    
+                case ENTER:
+                    resultado1= resultado1 + token+ " " + lexer.lexeme;
+                    writer1.print(lexer.lexeme);
+                    cont1++;
                     break;
                     
                 case CAMPOS_DE_ACCESO:
@@ -490,8 +533,12 @@ public class interfaz extends javax.swing.JFrame {
                     resultado=resultado+ "TOKEN: " + token   + "\n";
                     writer1.print(token.toString().toLowerCase());
             }
-            
         }
+    }
+    else
+    {
+       JOptionPane.showMessageDialog(null, "¡No existe el archivo de entrada!");     
+    }
         
         
  }

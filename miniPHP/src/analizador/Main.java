@@ -17,7 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String path ="C:/Users/Pimentel/Desktop/proyecto automatas/3ra version/miniPHP2/src/analizador/Lexer.flex";
+        String path ="C:/Users/Pimentel/Desktop/proyecto automatas/3ra version/miniPHP/src/analizador/Lexer.flex";
         generarLexer(path);
 
     }

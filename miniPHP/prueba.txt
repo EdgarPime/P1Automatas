@@ -1,5 +1,4 @@
-<?php
-while (list($key, $value) = each($arr)) {
+<?php while (list($key, $value) = each($arr)) {
     if (!($key % 2)) { // skip even members
         continue;
     }
@@ -22,7 +21,7 @@ while ($i++ < 5) {
 
 
 
-^^
+
 for( $i = 0; $i < 3; ++ $i )
     {
         echo ' [', $i, '] ';
@@ -50,7 +49,7 @@ echo "$bar\n";
 
 
 
-@
+
 
 function foo()
 {
@@ -88,10 +87,25 @@ foreach($stack2 AS $k=>$v){
     echo $k.' ::: '.$v.'<br>'; 
 } 
 /* 
-&
-one ::: first 
-four ::: fourth 
+
+
+&one ::: 
+
+
+first four 
+
+
+::: fourth 
+
+erer
+
+wew
 
 */ 
-$recordset['nombre del campo']
+echo $_SERVER['server'];
+
+$recordset[   'nombre del campo'   ]
+
+$dateTime = new DateTime();
+echo (clone $dateTime)->format('Y');
 ?>

@@ -1,7 +1,6 @@
 <?php while (list($key, $value) = each($arr)) {
 
-    if (!($key % 2)) { // skip even members
-
+    if (!($key % 2)) { 
         continue;
 
     }
@@ -146,71 +145,13 @@ foreach($stack as $v){
 
 } 
 
-/* 
+ 
+
+echo $_SERVER['server'];
 
 
 
-first 
-
-third 
-
-
-
-*/ 
-
-
-
-$stack2 = array('one'=>'first', 'two'=>'second', 'three'=>'third', 'four'=>'fourth', 'five'=>'fifth'); 
-
-foreach($stack2 as $k=>$v){ 
-
-    if($v == 'second')continue; 
-
-    if($k == 'three')continue; 
-
-    if($v == 'fifth')break; 
-
-    echo $k.' ::: '.$v.'<br>'; 
-
-} 
-
-/* 
-
-
-
-
-
-&one ::: 
-
-
-
-
-
-first four 
-
-
-
-
-
-::: fourth 
-
-
-
-erer
-
-
-
-wew
-
-
-
-*/ 
-
-echo $_server['server'];
-
-
-
-$recordset[   'nombre del campo'   ]
+$recordset[   'NOMBRE DEL CAMPO'   ]
 
 
 

@@ -1,6 +1,0 @@
-Error, el token no pertenece a php ^
-
-Error, el token no pertenece a php ^
-
-Error, el token no pertenece a php @
-

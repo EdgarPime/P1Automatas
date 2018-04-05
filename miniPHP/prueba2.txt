@@ -1,3 +1,0 @@
-<?php
-$foo = true; // assign the value TRUE to $foo
-?>
