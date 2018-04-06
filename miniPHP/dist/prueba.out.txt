@@ -117,7 +117,7 @@ function foo()
 
     $bar = 23;
 
-    echo "despuï¿½s de unset: $bar\n";
+    echo "después de unset: $bar\n";
 
 }
 
@@ -151,7 +151,9 @@ echo $_SERVER['server'];
 
 
 
-$recordset[   'NOMBRE DEL CAMPO'   ]
+$recordset[   'NOMBRE DEL CAMPO' , 'NOMBRE DEL CAMPO'  ]
+
+static public hola ($gf,$gf)
 
 
 

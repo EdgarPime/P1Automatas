@@ -1,0 +1,99 @@
+//TOKEN PARA SIGNOS DE PUNTUACION
+PUNTOYCOMA=(";")
+DOLAR=("$")
+PUNTO=(".")
+COMA=(",")
+DOSPUNTOS=(":")
+PARENIZQ=("(")
+PARENDER=(")")
+LLAVEIZQ=("{")
+LLAVEDER=("}")
+CORCHIZQ=("[")
+CORCHDER=("]")
+AMPERSAND=("&")
+INTERROGACION=("?")
+PUNTUACION={PUNTO}{COMA}
+
+
+//TOKEN PARA OPERADORES
+OPERASIGNACION=("=")
+OPERARITMETICO=("+")|("*")|("-")|("/")|("%")|("**")
+OPERCOMBINADO_ARIT=("+=")|("-=")|("*=")|("/=")|("**=")|("%=")
+OPERCOMBINADO_CAD=(".=")
+OPERCOMPARACION=("==")|("===")|("!=")|("<>")|("!==")|("<")|(">")|("<=")|(">=")|("<=>")
+OPERINCDEC=("++")|("--")
+OPERLOGICO=("and")|("xor")|("or")|("&&")|("||")
+OPERLOGNOT=("!")
+OPERASIG_ARRAY=("=>")
+
+//TOKEN PARA ESTRUCTURAS CONTROL
+IF=("if")
+ELSE=("else")
+ELSEIF=("elseif")
+WHILE=("while")
+ENDWHILE=("endwhile")
+FOR=("for")
+SWITCH=("switch")
+CASE=("case")
+ENDSWITCH=("endswitch")
+BREAK=("break")
+DEFAULT=("default")
+DO=("do")
+FOREACH=("foreach")
+ENDFOREACH=("endforeach")
+SWITCH=("switch")
+
+//TOKEN PARA TIPOS DE DATOS
+TIPODATO=(("string")|("bool")|("int"))
+
+//TOKEN PARA PALABRAS RESERVADAS
+INICIO =("<?php")
+FIN = ("?>")
+ECHO = ("echo")
+GLOBAL= ("global")
+STATIC= ("static")
+CONST= ("const")
+PRINT= ("print")
+FUNCTION= ("function")
+RETURN= ("return")
+NULL= ("null"|"NULL")
+INCLUDE= ("include")
+CONTINUE= ("continue")
+PALABRARESERVADA=(("__halt_compiler")|("clone")|("die")|("empty")|("final")|("include_once")
+                |("list")|("try")|("abstract")|("clone")|("callable")|("enddeclare")|("finally")|("goto")
+                |("instanceof")|("namespace")|("unset")|("yield")|("eval")|("use")
+                |("catch")|("declare")|("exit")|("implements")|("interface")
+                |("require")|("throw")|("var")|("isset")|("require_once")|("trait")|("array")|("header")|("preg_match_all")|("resource")
+                |("void")|("object")|("iterable")|("as"))
+
+//TOKEN PARA CLASES Y OBJETIVOS
+CLASS= ("class")
+PUBLIC= ("public")
+PROTECTED= ("protected")
+PRIVATE= ("private")
+NEW= ("new")
+EXTENDS= ("extends")
+
+//TOKEN PARA CODIGO HTML
+CODIGOHTML=(("<html>")|("<p>")|("</html>")|("</body>")|("</p>")|("<td>")|("</td>")|("<tr>")|("</tr>")|("</form>")|("<form>")|("</table>")|("<table>")|("<h1>")|("</h1>")
+            |("<head>")|("</head>"))
+
+//TOKENS ESPECIALES
+CADENA= (("\"")(~["\""])|("\'")(~["\'"]))
+ENTERO= ("+"|"-")?([0-9]+|0[xX][0-9a-fA-F]+|0[bB][01]+)
+REAL= ([+-])?(([0-9]+ | [0-9]+(".")[0-9]+) ([eE][+-])?[0-9]+)
+IDENTIFICADOR= [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
+BOOLEANO= (("true")|("false"))
+
+//TOKEN PARA CODIGO SQL
+MYSQLQUERY=("mysql_query"){WHITE}*{PARENIZQ}{WHITE}*({CADENA}|{VARIABLE}){WHITE}*{PARENDER}{PUNTOYCOMA}
+CODIGOSQL=(("mysql_query")|("mysql_fetch_assoc")|("mysql_error")|("mysql_real_escape_string")|("mysql_affected_rows")|("mysql_insert")|("parse_mysql_dump")|("mysql_connect")
+            |("mysql_close"))
+
+//TOKEN DECLARACIONES VARIABLE///////////////////////////
+
+VARIABLE= ({DOLAR}{IDENTIFICADOR})
+CONSTANTE= ({CONST}{WHITE}*{IDENTIFICADOR})
+TIPOVARIABLE=({GLOBAL}{WHITE}*)|(({STATIC}{WHITE}*)?(({PUBLIC}|{PROTECTED}|{PRIVATE}){WHITE}*)?)
+VARIABLEPREDEFINIDA= (("$globals")|("$_server")|("$_get")|("$_post")|("$_files")|("$_request")|("$_session")|("$_env")|("$_cookie"))
+VARIABLEPREDEFINIDA1=(("$php_errormsg")|("$http_response_header")|("$argc")|("$argv"))

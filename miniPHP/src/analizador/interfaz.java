@@ -437,6 +437,12 @@ public class interfaz extends javax.swing.JFrame {
                     //verificar=true;
                     break;
                     
+                case DECLARACION_FUNCION:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
                 case VARIABLE:
                     resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
                     writer1.print(lexer.lexeme);

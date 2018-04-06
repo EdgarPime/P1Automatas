@@ -19,10 +19,14 @@ public class Main {
     public static void main(String[] args) {
         String path ="C:/Users/Pimentel/Desktop/proyecto automatas/3ra version/miniPHP/src/analizador/Lexer.flex";
         generarLexer(path);
+        
+        interfaz form = new interfaz();
+        form.setVisible(true); 
 
     }
     public static void generarLexer(String path){
         File file=new File(path);
         JFlex.Main.generate(file);
+        
     }
 }
