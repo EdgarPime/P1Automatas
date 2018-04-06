@@ -17,11 +17,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String path ="C:/Users/Pimentel/Desktop/proyecto automatas/3ra version/miniPHP/src/analizador/Lexer.flex";
+        
+        String path="C:/Users/Pimentel/Desktop/miniPHP/src/analizador/Lexer.flex";
         generarLexer(path);
         
-        interfaz form = new interfaz();
-        form.setVisible(true); 
+//        interfaz form = new interfaz();
+//        form.setVisible(true); 
 
     }
     public static void generarLexer(String path){

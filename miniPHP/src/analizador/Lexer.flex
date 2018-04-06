@@ -5,11 +5,12 @@ import static analizador.Token.*;
 %type Token
 
 
-L = [a-zA-Z_]
+L = [a-zA-Z]
 D = [0-9]
 
 //TOKEN PARA SIGNOS DE PUNTUACION
 PUNTOYCOMA=(";")
+SINGO=("\\")
 DOLAR=("$")
 PUNTO=(".")
 COMA=(",")
@@ -53,6 +54,11 @@ FOREACH=("foreach")
 ENDFOREACH=("endforeach")
 SWITCH=("switch")
 
+//////////////////////////////
+
+
+
+
 //TOKEN PARA TIPOS DE DATOS
 TIPODATO=(("string")|("bool")|("int"))
 
@@ -87,6 +93,7 @@ EXTENDS= ("extends")
 //TOKEN PARA CODIGO HTML
 CODIGOHTML=(("<html>")|("<p>")|("</html>")|("</body>")|("</p>")|("<td>")|("</td>")|("<tr>")|("</tr>")|("</form>")|("<form>")|("</table>")|("<table>")|("<h1>")|("</h1>")
             |("<head>")|("</head>"))
+HTML=(("<")(.)*(">"))(.|{WHITE}|{ENTER})*(.|{WHITE}|{ENTER})*("<")(.)*(">")
 
 //TOKENS ESPECIALES
 CADENA= (("\"")(~["\""])|("\'")(~["\'"]))
@@ -207,8 +214,25 @@ public String lexeme;
 %%
 //{WHITE} {/*Ignore*/}
 
+//TOKEN PARA CAMPOS DE ACCESO A BASE DE DATOS
+{VARIABLE}{WHITE}*{CORCHIZQ}{WHITE}*({CADENA}){WHITE}*({COMA}{WHITE}*{CADENA})*{WHITE}*{CORCHDER} {lexeme=yytext(); return CAMPOS_DE_ACCESO;}
+
+//TOKEN PARA ERRORES
+{DOLAR}{D}({L}|{D})+ {lexeme=yytext(); return ERROR;}
+("="){D}({L}|{D})+ {lexeme=yytext(); return ERROR;}
+{DOLAR}({L}|{D}|("_"))+{DOLAR} {lexeme=yytext(); return ERROR;}
+("=")("!")("=") {lexeme=yytext(); return ERROR;}
+("/*")({WHITE}|{ENTER})*{L}+ {lexeme=yytext(); return ERROR;}
+{DOLAR}{D}{L}+ {lexeme=yytext(); return ERROR;}
+
+{SINGO} {lexeme=yytext(); return SINGO;}
+
+{HTML} {lexeme=yytext(); return HTML;}
+
 {ENTER} {lexeme=yytext(); return ENTER;}
 {WHITE} {lexeme=yytext(); return WHITE;}
+
+
 
 //TOKEN PARA SIGNOS DE PUNTUACION
 
@@ -298,8 +322,6 @@ public String lexeme;
 ("/*")(({WHITE}|{ENTER})*|.*)*("*/") {/*Ignore*/}
 ("//").*(\n) {/*Ignore*/}
 
-//TOKEN PARA CAMPOS DE ACCESO A BASE DE DATOS
-("$recordset"){WHITE}*{CORCHIZQ}{WHITE}*{CADENA}{WHITE}*({COMA}{WHITE}*{CADENA})*{WHITE}*{CORCHDER} {lexeme=yytext(); return CAMPOS_DE_ACCESO;}
 
 
 //TOKEN PARA CODIGO DE BASE DE DATOS

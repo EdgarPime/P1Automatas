@@ -1,112 +1,27 @@
-<?php while (list($key, $value) = each($arr)) {
-    if (!($key % 2)) { // skip even members
-        continue;
-    }
-    do_something_odd($value);
-}
-
-$i = 0;
-while ($i++ < 5) {
-    echo "Outer<br />\n";
-    while (1) {
-        echo "Middle<br />\n";
-        while (1) {
-            echo "Inner<br />\n";
-            continue 3;
-        }
-        echo "This never gets output.<br />\n";
-    }
-    echo "Neither does this.<br />\n";
-}
-
-
-
-
-for( $i = 0; $i < 3; ++ $i )
-    {
-        echo ' [', $i, '] ';
-        switch( $i )
-        {
-            case 0: echo 'zero'; break;
-            case 1: echo 'one' ; XXXX;
-            case 2: echo 'two' ; break;
-        }
-        echo ' <' , $i, '> ';
-    }
-
-
-function foo(&$bar) 
-{
-    unset($bar);
-    $bar = "blah";
-}
-
-$bar = 'algo';
-echo "$bar\n";
-
-foo($bar);
-echo "$bar\n";
-
-
-
-
-
-function foo()
-{
-    static $bar;
-    $bar++;
-    echo "Antes de unset: $bar, ";
-    unset($bar);
-    $bar = 23;
-    echo "Después de unset: $bar\n";
-}
-
-foo();
-foo();
-foo();
-
-$stack = array('first', 'second', 'third', 'fourth', 'fifth'); 
-
-foreach($stack AS $v){ 
-    if($v == 'second')continue; 
-    if($v == 'fourth')break; 
-    echo $v.'<br>'; 
-} 
+<?php
 /* 
+            db_export.php
+ */
 
-first 
-third 
-
-*/ 
-
-$stack2 = array('one'=>'first', 'two'=>'second', 'three'=>'third', 'four'=>'fourth', 'five'=>'fifth'); 
-foreach($stack2 AS $k=>$v){ 
-    if($v == 'second')continue; 
-    if($k == 'three')continue; 
-    if($v == 'fifth')break; 
-    echo $k.' ::: '.$v.'<br>'; 
-} 
-/* 
-
-
-&one ::: 
-
-
-first four 
-
-
-::: fourth 
-
-erer
-
-wew
-
-*/ 
-echo $_SERVER['server'];
-
-$recordset[   'nombre del campo' , 'nombre del campo'  ]
-static public hola ($gf,$gf)
-
-$dateTime = new DateTime();
-echo (clone $dateTime)->format('Y');
-?>
+$response = getInstance();
+$header   = getHeader();
+$scripts  = getScripts();
+$export = new Export();
+// $sub_part is used to see if we are coming from
+// db_export.php, in which case we don't obey $cfg['MaxTableList']
+$sub_part  = '_export';
+$url_query .= '&amp;goto=db_export.php';
+list(
+    $tables,
+    $num_tables,
+    $total_num_tables,
+    $sub_part,
+    $is_show_stats,
+    $db_is_system_schema,
+    $tooltip_truename,
+    $tooltip_aliasname,
+    $pos
+) = getDbInfo($db, isset($sub_part));
+/**
+ * Displays the form
+ */

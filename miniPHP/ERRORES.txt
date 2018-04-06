@@ -1,0 +1,3 @@
+El token no pertenece a php $1path
+ Error en la linea 10
+SE ENCONTRARON 1 ERRORES EN EL ARCHIVO

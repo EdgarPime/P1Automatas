@@ -1,0 +1,116 @@
+<?php
+
+/**
+
+ * displays site name.
+
+ */
+
+function sitename()
+
+{
+
+    echo config('name');
+
+}
+
+/**
+
+ * displays site version.
+
+ */
+
+function siteversion()
+
+{
+
+    echo config('version');
+
+}
+
+/**
+
+ * website navigation.
+
+ */
+
+function navmenu($sep = ' | ')
+
+{
+
+    $nav_menu = '';
+
+    foreach (config('nav_menu') as $uri => $name) {
+
+        $nav_menu = '<a href="/'.$uri.'">'.$name.'</a>'.$sep;
+
+    }
+
+    echo trim($nav_menu, $sep);
+
+}
+
+/**
+
+ * displays page title. it takes the data from 
+
+ * url, it replaces the hyphens with spaces and 
+
+ * it capitalizes the words.
+
+ */
+
+function pagetitle()
+
+{
+
+    $page = isset($_get['page']);
+
+    $page_final = htmlspecialchars($_get['page']);
+
+    ucwords(str_replace('-', ' ', $page));
+
+}
+
+/**
+
+ * displays page content. it takes the data from 
+
+ * the static pages inside the pages/ directory.
+
+ * when not found, display the 404 error page.
+
+ */
+
+function pagecontent()
+
+{
+
+    $page = isset($_get['page']);
+
+    $path = getcwd().'/'.$page.'.php';
+
+    if (file_exists(filter_var($path, filter_sanitize_url))) {
+
+        include $path;
+
+    } else {
+
+        include $1path; 
+
+    }
+
+}
+
+
+
+function run()
+
+{
+
+    include config('template_path').'/template.php';
+
+}
+
+?>
+

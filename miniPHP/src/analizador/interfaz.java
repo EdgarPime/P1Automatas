@@ -258,6 +258,12 @@ public class interfaz extends javax.swing.JFrame {
                     //verificar=true;
                     break;
                     
+                case HTML:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
                 case INTERROGACION:
                     resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
                     writer1.print(lexer.lexeme);
@@ -283,6 +289,12 @@ public class interfaz extends javax.swing.JFrame {
                     break;
                     
                 case DOSPUNTOS:
+                    resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
+                    writer1.print(lexer.lexeme);
+                    //verificar=true;
+                    break;
+                    
+                case SINGO:
                     resultado=resultado+"TOKEN: " + token + " " + lexer.lexeme + "\n";
                     writer1.print(lexer.lexeme);
                     //verificar=true;
